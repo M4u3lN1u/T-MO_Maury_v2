@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-tmo_modulos}
+      POSTGRES_USER: ${DB_USER:-tmo}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-tmo_dev_local}
+    ports:
+      - '127.0.0.1:${DB_PORT:-5433}:5432'
+    volumes:
+      - tmo_datos:/var/lib/postgresql/data
+volumes:
+  tmo_datos:
